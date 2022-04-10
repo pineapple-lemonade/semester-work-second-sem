@@ -2,6 +2,7 @@ package ru.itis.ruzavin.infsecondsemsemesterwork.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,6 +15,7 @@ import ru.itis.ruzavin.infsecondsemsemesterwork.security.details.CustomUserDetai
 
 import javax.sql.DataSource;
 
+@Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
@@ -40,9 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.authorizeRequests()
 				.antMatchers("/signUp").permitAll()
-				.antMatchers("/").authenticated()
+				.antMatchers("/").permitAll()
 				.antMatchers("/profile").authenticated()
-				.antMatchers("/accounts/**").authenticated()
 				.and()
 				.formLogin()
 				.loginPage("/signIn")
@@ -56,7 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/signIn?logout")
 				.deleteCookies("JSESSIONID")
-				.invalidateHttpSession(true);
+				.invalidateHttpSession(true)
+				.and();
 	}
 
 	@Bean

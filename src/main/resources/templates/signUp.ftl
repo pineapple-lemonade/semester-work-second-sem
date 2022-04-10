@@ -3,7 +3,7 @@
 
 <#macro title>
     <title>Sign Up</title>
-    <link rel="shortcut icon" href="/files/img_3.png" type="image/png">
+    <link rel="shortcut icon" href="/static/img_3.png" type="image/png">
 </#macro>
 <style>
     @font-face {
@@ -24,9 +24,6 @@
         margin-top: 20px;
     }
 </style>
-
-
-
 
 <#macro content>
     <script>

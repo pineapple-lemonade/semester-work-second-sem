@@ -15,6 +15,15 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+
+	public enum Role {
+		USER
+	};
+
+	public enum State {
+		NOT_CONFIRMED, CONFIRMED, DELETED
+	};
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -29,4 +38,10 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private Set<Build> builds;
+
+	@Enumerated(EnumType.STRING)
+	private Role role;
+
+	@Enumerated(EnumType.STRING)
+	private State state;
 }
