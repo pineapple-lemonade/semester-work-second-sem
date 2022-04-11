@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.SignUpForm;
+import ru.itis.ruzavin.infsecondsemsemesterwork.services.SignUpService;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/signUp")
 public class SignUpController {
+
+	private final SignUpService signUpService;
 
 	@GetMapping
 	public String getSignUpPage(Authentication authentication, Model model) {
@@ -27,7 +32,10 @@ public class SignUpController {
 	}
 
 	@PostMapping
-	public String signUp(SignUpForm form, Model model) {
-		return null;
+	public String signUp(SignUpForm form, HttpServletRequest request) {
+		signUpService.signUp(form, request);
+		return "redirect:/profile";
 	}
+
+
 }

@@ -32,23 +32,7 @@
         function validFunction() {
             return isValid;
         }
-        function checkLogin(login) {
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status === 200) {
-                    if (this.responseText === "login taken") {
-                        document.getElementById("error").innerHTML = "Login is already taken";
-                        isValid = false
-                    } else {
-                        document.getElementById("error").innerHTML = ""
-                        document.getElementById("error").className = "error"
-                        isValid = true
-                    }
-                }
-            }
-            xmlhttp.open("GET","/checkSignUp?login=" + login, true);
-            xmlhttp.send();
-        }
+
         function checkEmail(email) {
             const xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
@@ -63,7 +47,7 @@
                     }
                 }
             }
-            xmlhttp.open("GET","/checkSignUp?email=" + email, true);
+            xmlhttp.open("GET","/checkSignUp/email/" + email, true);
             xmlhttp.send();
         }
         function checkNick(nickname) {
@@ -80,7 +64,7 @@
                     }
                 }
             }
-            xmlhttp.open("GET","/checkSignUp?nick=" + nickname, true);
+            xmlhttp.open("GET","/checkSignUp/nick/" + nickname, true);
             xmlhttp.send();
         }
         const nickname = document.getElementById("userNick");
@@ -118,19 +102,15 @@
 
         <p class="lead">
             Nickname:
-            <input id="userNick" name="userNick" type="text" placeholder="NickName" minlength="5" onkeyup="checkNick(this.value)" required/>
-        </p>
-        <p class="lead">
-            Login:
-            <input id="userLogin" name="userLogin" type="text" placeholder="Login" onkeyup="checkLogin(this.value)" minlength="5" required/>
+            <input id="userNick" name="nick" type="text" placeholder="NickName" minlength="5" onkeyup="checkNick(this.value)" required/>
         </p>
         <p class="lead">
             Email:
-            <input id="userEmail" name="userEmail" type="email" placeholder="Email" onkeyup="checkEmail(this.value)" required/>
+            <input id="userEmail" name="email" type="email" placeholder="Email" onkeyup="checkEmail(this.value)" required/>
         </p>
         <p class="lead">
             Password:
-            <input id="userPass" name="userPass" type="password" placeholder="Password" minlength="5" required/>
+            <input id="userPass" name="password" type="password" placeholder="Password" minlength="5" required/>
         </p>
         <input type="submit" value="Sign Up">
         <br>

@@ -3,7 +3,7 @@
 <html>
 <#macro title>
     <title>Profile</title>
-    <link rel="shortcut icon" href="/files/img_3.png" type="image/jpg">
+    <link rel="shortcut icon" href="img_3.png" type="image/jpg">
 </#macro>
 <style>
     @font-face {
