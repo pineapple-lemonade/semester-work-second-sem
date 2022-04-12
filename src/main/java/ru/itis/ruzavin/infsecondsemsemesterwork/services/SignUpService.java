@@ -7,5 +7,5 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface SignUpService {
 	//TODO throw exception and handle it
-	UserDto signUp(SignUpForm form, HttpServletRequest request);
+	UserDto signUp(SignUpForm form);
 }

@@ -3,7 +3,7 @@
 <html lang="en">
 <#macro title>
     <title>SignIn</title>
-    <link rel="shortcut icon" href="/files/img_3.png" type="image/jpg">
+    <link rel="shortcut icon" href="img_3.png" type="image/jpg">
 </#macro>
 <style>
     @font-face {
@@ -27,17 +27,17 @@
     <br>
         <form action="/signIn" method="post">
             <p class="lead">
-                Login:<br>
-                <input name="userLogin" type="text" placeholder="Login"/>
+                Email:<br>
+                <input name="email" type="email" placeholder="Email"/>
             </p>
             <p class="lead">
                 Password:<br>
-                <input name="userPass" type="password" placeholder="Password"/>
+                <input name="password" type="password" placeholder="Password"/>
             </p>
             <br>
             <p class="lead">
                 Remember me:
-                <input name="isRemember" type="checkbox">
+                <input name="rememberMe" type="checkbox">
             </p>
             <br>
             <p class="lead"><input type="submit" value="Enter"></p>

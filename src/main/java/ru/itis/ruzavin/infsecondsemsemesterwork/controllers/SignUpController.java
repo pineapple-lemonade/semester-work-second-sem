@@ -32,8 +32,8 @@ public class SignUpController {
 	}
 
 	@PostMapping
-	public String signUp(SignUpForm form, HttpServletRequest request) {
-		signUpService.signUp(form, request);
+	public String signUp(SignUpForm form) {
+		signUpService.signUp(form);
 		return "redirect:/profile";
 	}
 

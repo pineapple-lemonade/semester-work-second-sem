@@ -33,13 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 	}
 
-	//TODO maybe remove this part of code later
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
