@@ -42,7 +42,7 @@
             <#if user.avatarUrl??>
                 <td><img alt="user_img" src="${user.avatarUrl}" class="avatar"></td>
             <#else>
-                <td><img alt="user_img" src="/files/img.png" class="avatar"></td>
+                <td><img alt="user_img" src="img.png" class="avatar"></td>
             </#if>
         </tr>
         <td>
@@ -54,14 +54,6 @@
                         </h2>
                     </td>
 
-                </tr>
-
-                <tr>
-                    <td>
-                        <h3>
-                            <em>Login: ${user.login} </em>
-                        </h3>
-                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -90,7 +82,7 @@
     </form>
 
     <br>
-        <p class="lead"><a href="/signOut">Sign Out</a></p>
+        <p class="lead"><a href="/signOut" class="btn btn-primary">Sign Out</a></p>
     <br>
 </#macro>
 </html>

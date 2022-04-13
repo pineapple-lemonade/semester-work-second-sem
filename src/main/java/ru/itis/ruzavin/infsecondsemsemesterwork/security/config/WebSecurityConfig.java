@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -27,6 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
+
+	@Autowired
+	private SavedRequestAwareAuthenticationSuccessHandler awareAuthenticationSuccessHandler;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -51,14 +55,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()
 				.loginPage("/signIn")
 				.defaultSuccessUrl("/profile")
-				.failureUrl("/signIn?error")
+				.failureUrl("/signIn?reason=error")
 				.usernameParameter("email")
 				.passwordParameter("password")
+				.successHandler(awareAuthenticationSuccessHandler)
 				.permitAll()
 				.and()
 				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/signIn?logout")
+				.logoutRequestMatcher(new AntPathRequestMatcher("/signOut"))
+				.logoutSuccessUrl("/signIn?reason=signOut")
 				.deleteCookies("JSESSIONID")
 				.invalidateHttpSession(true)
 				.and();

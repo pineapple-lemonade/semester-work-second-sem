@@ -16,11 +16,7 @@
     }
 
 </style>
-<#if message??>
-    <script>
-        alert("failed to auth")
-    </script>
-</#if>
+
 <#macro content>
     <br>
     <h1>Sign In</h1>
