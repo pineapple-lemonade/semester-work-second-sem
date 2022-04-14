@@ -1,10 +1,11 @@
-package ru.itis.ruzavin.infsecondsemsemesterwork.util;
+package ru.itis.ruzavin.infsecondsemsemesterwork.handlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import ru.itis.ruzavin.infsecondsemsemesterwork.dto.UserDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.repositories.UserRepository;
 
 import javax.servlet.ServletException;
@@ -20,9 +21,9 @@ public class AuthenticationSuccessWithSessionHandler extends SavedRequestAwareAu
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
+		//super.onAuthenticationSuccess(request, response, authentication);
+		request.getSession().setAttribute("user", UserDto.from(userRepository.findByEmail(authentication.getName()).get()));
 		response.sendRedirect("/profile");
-		request.getSession().setAttribute("user", userRepository.findByEmail(authentication.getName()).get());
-		super.onAuthenticationSuccess(request, response, authentication);
 	}
 
 }

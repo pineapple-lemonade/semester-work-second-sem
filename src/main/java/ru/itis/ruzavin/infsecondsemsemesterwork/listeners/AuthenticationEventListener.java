@@ -1,4 +1,4 @@
-package ru.itis.ruzavin.infsecondsemsemesterwork.util;
+package ru.itis.ruzavin.infsecondsemsemesterwork.listeners;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
