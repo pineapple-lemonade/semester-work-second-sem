@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService {
 			String url = (String) upload.get("url");
 			user.setAvatarUrl(url);
 			updateUser(user);
+			file.delete();
 		} catch (IOException e) {
 			throw new IllegalArgumentException(e);
 		}
