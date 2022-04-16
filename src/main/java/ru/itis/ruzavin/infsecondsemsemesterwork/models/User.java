@@ -1,14 +1,15 @@
 package ru.itis.ruzavin.infsecondsemsemesterwork.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -34,9 +35,11 @@ public class User {
 	private String avatarUrl;
 
 	@OneToMany(mappedBy = "user")
+	@ToString.Exclude
 	private Set<Guide> guides;
 
 	@OneToMany(mappedBy = "user")
+	@ToString.Exclude
 	private Set<Build> builds;
 
 	@Enumerated(EnumType.STRING)
@@ -44,4 +47,17 @@ public class User {
 
 	@Enumerated(EnumType.STRING)
 	private State state;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+		User user = (User) o;
+		return id != null && Objects.equals(id, user.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }

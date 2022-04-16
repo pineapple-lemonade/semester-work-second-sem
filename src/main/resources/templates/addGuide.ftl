@@ -10,7 +10,7 @@
     <br>
     <h1>Guide</h1>
     <br>
-    <form action="/addGuide" method="post" novalidate enctype="multipart/form-data">
+    <form action="/guides/add" method="post" novalidate enctype="multipart/form-data">
         <p class="lead">
             Write title:<br>
             <input name="title" type="text" style="width: 710px"><br>
@@ -20,7 +20,7 @@
         <p class="lead">
             Write text:<br>
             <label>
-                <textarea name="content" class="recipe" style="width: 710px"></textarea>
+                <textarea name="text" class="recipe" style="width: 710px"></textarea>
             </label><br>
         </p>
 
