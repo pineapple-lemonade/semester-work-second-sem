@@ -59,19 +59,19 @@
             <a class="navbar-brand" href="/info">About</a>
         </li>
         <li class="nav-item">
-            <a class="navbar-brand" href="/allGuides">Guides</a>
+            <a class="navbar-brand" href="/guides">Guides</a>
         </li>
         <li class="nav-item">
-            <a class="navbar-brand" href="/allBuilds">Builds</a>
+            <a class="navbar-brand" href="/builds">Builds</a>
         </li>
         <li class="nav-item">
-            <a class="navbar-brand" href="/allUsers">All users</a>
+            <a class="navbar-brand" href="/users">All users</a>
         </li>
         <li class="nav-item">
-            <a class="navbar-brand" href="/addGuide">Add Guide</a>
+            <a class="navbar-brand" href="/guides/add">Add Guide</a>
         </li>
         <li class="nav-item">
-            <a class="navbar-brand" href="/addBuild">Add Build</a>
+            <a class="navbar-brand" href="/builds/add">Add Build</a>
         </li>
     </ul>
 

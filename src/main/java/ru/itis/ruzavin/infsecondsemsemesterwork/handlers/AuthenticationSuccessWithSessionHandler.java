@@ -21,7 +21,6 @@ public class AuthenticationSuccessWithSessionHandler extends SavedRequestAwareAu
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
-		//super.onAuthenticationSuccess(request, response, authentication);
 		request.getSession().setAttribute("user", UserDto.from(userRepository.findByEmail(authentication.getName()).get()));
 		response.sendRedirect("/profile");
 	}

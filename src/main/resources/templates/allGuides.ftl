@@ -3,7 +3,7 @@
 
 <#macro title>
     <title>All Guides</title>
-    <link rel="shortcut icon" href="/files/img_3.png" type="image/png">
+    <link rel="shortcut icon" href="img_3.png" type="image/png">
 
 </#macro>
 
