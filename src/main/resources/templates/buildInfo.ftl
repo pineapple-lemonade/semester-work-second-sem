@@ -3,7 +3,7 @@
 
 <#macro title>
     <title>Build</title>
-    <link rel="shortcut icon" href="/files/img_3.png" type="image/png">
+    <link rel="shortcut icon" href="/img_3.png" type="image/png">
 </#macro>
 
 <#macro content>
@@ -27,13 +27,13 @@
             <table>
                 <tr>
                     <td>
-                        <a href="/userInfo?id=${author.id}">
+                        <a href="/users/${author.id}">
                             <img alt="user_img" src="${author.avatarUrl}" width="50" height="50" class="rounded-circle">
                         </a>
                     </td>
 
                     <td><strong style="font-size:20px">Nick: ${build.userNick}</strong></td>
-                    <td><small class="text-muted" style="font-size:17px"><em>${build.data}</em></small></td>
+                    <td><small class="text-muted" style="font-size:17px"><em>${build.date}</em></small></td>
                     <td><small class="text-muted" style="font-size:17px">Build ${build.id}</small></td>
                 </tr>
             </table>
@@ -41,7 +41,6 @@
 
         <br>
 
-        <#if isComments??>
             <#if comments?has_content>
                 <p class="lead">Comments:</p>
 
@@ -49,7 +48,7 @@
                     <table>
                         <tr>
                             <td>
-                                <a href="/userInfo?id=${comment.user.id}">
+                                <a href="/users/${comment.user.id}">
                                     <img alt="user_img" src="${comment.user.avatarUrl}" width="50" height="50" class="rounded-circle">
                                 </a>
                             </td>
@@ -64,8 +63,8 @@
                 <p class="lead">No comments</p>
             </#if>
 
-            <#if userNow?has_content>
-                <form action="/buildInfo?id=${build.id}" method="post" novalidate>
+            <#if user?has_content>
+                <form action="/builds/${build.id}" method="post" novalidate>
                     <p class="lead">Enter comment:</p>
                     <p class="lead">
                         <label>
@@ -79,8 +78,5 @@
                 <p class="lead">Sign in to leave comments</p>
             </#if>
         </#if>
-    <#else>
-        <p class="lead">Something went wrong</p>
-    </#if>
 
 </#macro>

@@ -32,8 +32,8 @@
             <table>
                 <tr>
                     <td>
-                        <a href="/users/${user.id}">
-                            <img alt="user_img" src="${user.avatarUrl}" width="50" height="50" class="color-square">
+                        <a href="/users/${author.id}">
+                            <img alt="user_img" src="${author.avatarUrl}" width="50" height="50" class="color-square">
                         </a>
                     </td>
 
@@ -46,7 +46,6 @@
 
         <br>
 
-        <#if isComments??>
             <#if comments?has_content>
                 <p class="lead">Comments:</p>
                 <#list comments as comment>
@@ -83,8 +82,5 @@
                 <p class="lead">Sign In to leave comments</p>
             </#if>
         </#if>
-    <#else>
-        <p class="lead">Something went wrong</p>
-    </#if>
 
 </#macro>

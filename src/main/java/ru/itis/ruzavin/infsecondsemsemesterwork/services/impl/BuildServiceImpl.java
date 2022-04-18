@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.AddBuildDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.BuildDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.GuideDto;
+import ru.itis.ruzavin.infsecondsemsemesterwork.dto.UserDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.exceptions.UserNotExistsException;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.Build;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.Guide;
@@ -65,5 +66,17 @@ public class BuildServiceImpl implements BuildService {
 	@Override
 	public List<BuildDto> getAllBuildsByTitle(String title) {
 		return BuildDto.from(buildRepository.findAllByTitle(title));
+	}
+
+	@Override
+	public Optional<BuildDto> getBuildById(Integer buildId) {
+		return Optional.of(BuildDto.from(buildRepository.getById(buildId)));
+	}
+
+	@Override
+	public Optional<UserDto> findUserByBuildId(Integer buildId) {
+		Build build = buildRepository.getById(buildId);
+		User user = userRepository.getById(build.getUser().getId());
+		return Optional.of(UserDto.from(user));
 	}
 }

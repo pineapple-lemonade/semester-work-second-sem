@@ -38,6 +38,7 @@ public class GuideController {
 	@GetMapping("/{id}")
 	public String getGuidePage(@PathVariable("id") Integer guideId, Model model) {
 		model.addAttribute("guide", guideService.getGuideById(guideId).get());
+		model.addAttribute("author", guideService.findUserByGuideId(guideId).get());
 		return "guideInfo";
 	}
 }
