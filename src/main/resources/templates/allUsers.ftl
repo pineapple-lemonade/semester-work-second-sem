@@ -3,7 +3,7 @@
 
 <#macro title>
     <title>All Guides</title>
-    <link rel="shortcut icon" href="/files/img_3.png" type="image/png">
+    <link rel="shortcut icon" href="/img_3.png" type="image/png">
 
 </#macro>
 
@@ -11,25 +11,55 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         window.onload = function showAll() {
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("result").innerHTML = this.responseText;
+            let request = new XMLHttpRequest()
+            request.open('GET', '/handleUsers', false)
+            request.send()
+
+            if (request.status !== 200) {
+                alert("error")
+            } else {
+                let html = ""
+
+                let response = JSON.parse(request.response)
+
+                for (let i = 0; i < response.length; i++) {
+                    html += "<a href='/users/" + response[i]['id'] + "'/>"
+                    html += "<div class='alert alert-dark' role='alert'>"
+                    html += "<table><tr>"
+                    html += "<td><img alt='user_img' src='" + response[i]['avatarUrl'] +
+                        "' width='50' height='50' class='rounded-circle'></td>"
+                    html += "<td><h3>"
+                    html += "<strong>" + response[i]['nick'] + "</strong>"
+                    html += "</h3></td></tr></table></div></a>"
                 }
+                document.getElementById('result').innerHTML = html
             }
-            xmlhttp.open("GET", "/allUsersHandler", true);
-            xmlhttp.send();
         }
 
         function showResult(nickname) {
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("result").innerHTML = this.responseText;
+            let request = new XMLHttpRequest()
+            request.open('GET', '/handleUsers/' + nickname, false)
+            request.send()
+
+            if (request.status !== 200) {
+                alert("error")
+            } else {
+                let html = ""
+
+                let response = JSON.parse(request.response)
+
+                for (let i = 0; i < response.length; i++) {
+                    html += "<a href='/users/" + response[i]['id'] + "'/>"
+                    html += "<div class='alert alert-dark' role='alert'>"
+                    html += "<table><tr>"
+                    html += "<td><img alt='user_img' src='" + response[i]['avatarUrl'] +
+                        "' width='50' height='50' class='rounded-circle'/></td>"
+                    html += "<td><h3>"
+                    html += "<strong>" + response[i]['nick'] + "</strong>"
+                    html += "</h3></td></tr></table></div></a>"
                 }
+                document.getElementById('result').innerHTML = html
             }
-            xmlhttp.open("GET", "/allUsersHandler?nickname=" + nickname, true);
-            xmlhttp.send();
         }
     </script>
 

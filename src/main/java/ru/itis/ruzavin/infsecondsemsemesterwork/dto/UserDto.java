@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.User;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,5 +35,11 @@ public class UserDto {
 				.role(user.getRole())
 				.state(user.getState())
 				.build();
+	}
+
+	public static List<UserDto> from(List<User> users) {
+		return users.stream()
+				.map(UserDto::from)
+				.collect(Collectors.toList());
 	}
 }

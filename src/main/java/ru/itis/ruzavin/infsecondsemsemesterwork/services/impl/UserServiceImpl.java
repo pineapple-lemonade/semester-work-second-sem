@@ -14,6 +14,7 @@ import ru.itis.ruzavin.infsecondsemsemesterwork.util.ImageHelper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -75,5 +76,20 @@ public class UserServiceImpl implements UserService {
 			throw new IllegalArgumentException(e);
 		}
 		return Optional.of(user);
+	}
+
+	@Override
+	public List<UserDto> getAllUsers() {
+		return UserDto.from(userRepository.findAll());
+	}
+
+	@Override
+	public List<UserDto> getUsersByNick(String nick) {
+		return UserDto.from(userRepository.findAllByNickContaining(nick));
+	}
+
+	@Override
+	public Optional<UserDto> getUserById(Integer id) {
+		return Optional.of(UserDto.from(userRepository.getById(id)));
 	}
 }

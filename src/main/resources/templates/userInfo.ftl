@@ -18,7 +18,7 @@
                     <#if detailUser.avatarUrl?has_content>
                          <img alt="user_img" src="${detailUser.avatarUrl}" width="150" height="150" class="hover-square">
                     <#else>
-                        <img alt="user_img" src="/files/img.png" width="150" height="150" class="hover-square">
+                        <img alt="user_img" src="/img.png" width="150" height="150" class="hover-square">
                 </#if>
                 </td>
                 <td>
