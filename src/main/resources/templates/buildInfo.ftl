@@ -43,16 +43,15 @@
 
             <#if comments?has_content>
                 <p class="lead">Comments:</p>
-
                 <#list comments as comment>
                     <table>
                         <tr>
                             <td>
-                                <a href="/users/${comment.user.id}">
-                                    <img alt="user_img" src="${comment.user.avatarUrl}" width="50" height="50" class="rounded-circle">
+                                <a href="/users/${comment.userId}">
+                                    <img alt="user_img" src="${comment.userAvatar}" width="50" height="50" class="rounded-circle">
                                 </a>
                             </td>
-                            <td><strong style="font-size:20px">Nick: ${comment.user.nick}</strong></td>
+                            <td><strong style="font-size:20px">Nick: ${comment.userNick}</strong></td>
                         </tr>
                     </table>
                     <div class="alert alert-dark" role="alert">
@@ -64,11 +63,11 @@
             </#if>
 
             <#if user?has_content>
-                <form action="/builds/${build.id}" method="post" novalidate>
+                <form action="/comments/build/${build.id}" method="post" novalidate>
                     <p class="lead">Enter comment:</p>
                     <p class="lead">
                         <label>
-                            <textarea name="comment" placeholder="Comment" class="comment" style="width: 710px"></textarea>
+                            <textarea name="text" placeholder="Comment" class="comment" style="width: 710px"></textarea>
                         </label><br>
                     </p>
                     <p class="lead"><input type="submit" value="Save"></p>

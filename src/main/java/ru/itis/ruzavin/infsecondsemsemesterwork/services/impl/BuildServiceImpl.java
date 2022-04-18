@@ -1,28 +1,24 @@
 package ru.itis.ruzavin.infsecondsemsemesterwork.services.impl;
 
-import com.cloudinary.utils.ObjectUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.AddBuildDto;
+import ru.itis.ruzavin.infsecondsemsemesterwork.dto.CommentDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.BuildDto;
-import ru.itis.ruzavin.infsecondsemsemesterwork.dto.GuideDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.UserDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.exceptions.UserNotExistsException;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.Build;
-import ru.itis.ruzavin.infsecondsemsemesterwork.models.Guide;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.User;
+import ru.itis.ruzavin.infsecondsemsemesterwork.repositories.BuildCommentRepository;
 import ru.itis.ruzavin.infsecondsemsemesterwork.repositories.BuildRepository;
 import ru.itis.ruzavin.infsecondsemsemesterwork.repositories.UserRepository;
 import ru.itis.ruzavin.infsecondsemsemesterwork.services.BuildService;
 import ru.itis.ruzavin.infsecondsemsemesterwork.util.CloudinaryHelper;
 import ru.itis.ruzavin.infsecondsemsemesterwork.util.ImageHelper;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -36,6 +32,8 @@ public class BuildServiceImpl implements BuildService {
 	private final ImageHelper imageHelper;
 
 	private final CloudinaryHelper cloudinaryHelper;
+
+	private final BuildCommentRepository buildCommentRepository;
 
 	@Override
 	public List<BuildDto> getAllBuilds() {
@@ -78,5 +76,10 @@ public class BuildServiceImpl implements BuildService {
 		Build build = buildRepository.getById(buildId);
 		User user = userRepository.getById(build.getUser().getId());
 		return Optional.of(UserDto.from(user));
+	}
+
+	@Override
+	public List<CommentDto> getAllComments(Integer buildId) {
+		return CommentDto.fromBuildComments(buildCommentRepository.findAllByBuildId(buildId));
 	}
 }

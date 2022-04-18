@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class SignUpServiceImpl implements SignUpService {
 
+	private final static String DEFAULT_AVATAR_URL = "https://res.cloudinary.com/de5binygw/image/upload/v1650284936/img_yrmfxs.png";
+
 	private final UserRepository userRepository;
 
 	private final PasswordEncoder passwordEncoder;
@@ -37,7 +39,7 @@ public class SignUpServiceImpl implements SignUpService {
 		User user = User.builder()
 				.email(form.getEmail())
 				.nick(form.getNick())
-				.avatarUrl(form.getAvatarUrl())
+				.avatarUrl(DEFAULT_AVATAR_URL)
 				.password(passwordEncoder.encode(form.getPassword()))
 				.role(User.Role.USER)
 				.state(User.State.NOT_CONFIRMED)

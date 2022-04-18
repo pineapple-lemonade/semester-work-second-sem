@@ -42,6 +42,12 @@ public class User {
 	@ToString.Exclude
 	private Set<Build> builds;
 
+	@OneToMany(mappedBy = "user")
+	private Set<BuildComment> buildComments;
+
+	@OneToMany(mappedBy = "user")
+	private Set<GuideComment> guideComments;
+
 	@Enumerated(EnumType.STRING)
 	private Role role;
 

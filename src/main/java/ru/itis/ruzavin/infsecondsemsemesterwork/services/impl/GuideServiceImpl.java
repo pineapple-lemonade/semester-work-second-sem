@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.AddGuideDto;
+import ru.itis.ruzavin.infsecondsemsemesterwork.dto.CommentDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.GuideDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.UserDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.exceptions.UserNotExistsException;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.Build;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.Guide;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.User;
+import ru.itis.ruzavin.infsecondsemsemesterwork.repositories.GuideCommentRepository;
 import ru.itis.ruzavin.infsecondsemsemesterwork.repositories.GuideRepository;
 import ru.itis.ruzavin.infsecondsemsemesterwork.repositories.UserRepository;
 import ru.itis.ruzavin.infsecondsemsemesterwork.services.GuideService;
@@ -31,6 +33,8 @@ public class GuideServiceImpl implements GuideService {
 	private final ImageHelper imageHelper;
 
 	private final CloudinaryHelper cloudinaryHelper;
+
+	private final GuideCommentRepository guideCommentRepository;
 
 	@Override
 	public List<GuideDto> getAllGuides() {
@@ -74,5 +78,10 @@ public class GuideServiceImpl implements GuideService {
 		Guide guide = guideRepository.getById(guideId);
 		User user = userRepository.getById(guide.getUser().getId());
 		return Optional.of(UserDto.from(user));
+	}
+
+	@Override
+	public List<CommentDto> getAllComments(Integer guideId) {
+		return CommentDto.fromGuideComments(guideCommentRepository.findAllByGuideId(guideId));
 	}
 }

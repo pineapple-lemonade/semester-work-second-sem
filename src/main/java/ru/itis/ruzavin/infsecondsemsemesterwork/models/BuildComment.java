@@ -4,9 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -15,30 +13,27 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "guides")
-public class Guide {
+public class BuildComment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String title;
 	private String text;
-	private String photoUrl;
-	private LocalDateTime date;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 
-	@OneToMany(mappedBy = "guide")
-	private Set<GuideComment> guideComment;
+	@ManyToOne
+	@JoinColumn(name = "build_id", referencedColumnName = "id")
+	private Build build;
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		Guide guide = (Guide) o;
-		return id != null && Objects.equals(id, guide.id);
+		BuildComment that = (BuildComment) o;
+		return id != null && Objects.equals(id, that.id);
 	}
 
 	@Override

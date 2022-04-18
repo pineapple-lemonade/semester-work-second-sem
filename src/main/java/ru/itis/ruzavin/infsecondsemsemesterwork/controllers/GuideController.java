@@ -39,6 +39,7 @@ public class GuideController {
 	public String getGuidePage(@PathVariable("id") Integer guideId, Model model) {
 		model.addAttribute("guide", guideService.getGuideById(guideId).get());
 		model.addAttribute("author", guideService.findUserByGuideId(guideId).get());
+		model.addAttribute("comments", guideService.getAllComments(guideId));
 		return "guideInfo";
 	}
 }

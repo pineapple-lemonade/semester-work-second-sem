@@ -39,6 +39,7 @@ public class BuildController {
 	public String getBuildPage(@PathVariable("id") Integer buildId, Model model) {
 		model.addAttribute("build", buildService.getBuildById(buildId).get());
 		model.addAttribute("author", buildService.findUserByBuildId(buildId).get());
+		model.addAttribute("comments", buildService.getAllComments(buildId));
 		return "buildInfo";
 	}
 }

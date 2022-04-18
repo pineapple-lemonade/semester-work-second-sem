@@ -52,11 +52,11 @@
                     <table>
                         <tr>
                             <td>
-                                <a href="/users/${comment.user.id}">
-                                    <img alt="user_img" src="${comment.user.avatarUrl}" width="50" height="50" class="color-square">
+                                <a href="/users/${comment.userId}">
+                                    <img alt="user_img" src="${comment.userAvatar}" width="50" height="50" class="color-square">
                                 </a>
                             </td>
-                            <td><strong style="font-size:20px">Nick: ${comment.user.nick}</strong></td>
+                            <td><strong style="font-size:20px">Nick: ${comment.userNick}</strong></td>
                         </tr>
                     </table>
                     <div class="alert alert-dark" role="alert">
@@ -68,11 +68,11 @@
             </#if>
 
             <#if user?has_content>
-                <form action="/guides/${guide.id}" method="post" novalidate>
+                <form action="/comments/guide/${guide.id}" method="post" novalidate>
                     <p class="lead">Insert comment:</p>
                     <p class="lead">
                         <label>
-                            <textarea name="comment" placeholder="Comment" class="comment" style="width: 710px"></textarea>
+                            <textarea name="text" placeholder="Comment" class="comment" style="width: 710px"></textarea>
                         </label><br>
                     </p>
                     <p class="lead"><input type="submit" value="Save"></p>
