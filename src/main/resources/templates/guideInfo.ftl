@@ -3,20 +3,19 @@
 
 <#macro title>
     <title>Guide</title>
-    <link rel="shortcut icon" href="/files/img_3.png" type="image/png">
+    <link rel="shortcut icon" href="/img_3.png" type="image/png">
 </#macro>
 
 <#macro content>
     <br>
-    <#if u??>
+    <#if user??>
         <p class="lead"><a href="/myGuides"><- Back</a></p>
     <#else>
-        <p class="lead"><a href="/allGuides"><- Back</a></p>
+        <p class="lead"><a href="/guides"><- Back</a></p>
     </#if>
     <br>
 
     <#if guide?has_content>
-        <br>
         <br>
         <br>
         <h1>${guide.title}</h1>
@@ -33,13 +32,13 @@
             <table>
                 <tr>
                     <td>
-                        <a href="/userInfo?id=${author.id}">
-                            <img alt="user_img" src="${author.avatarUrl}" width="50" height="50" class="color-square">
+                        <a href="/users/${user.id}">
+                            <img alt="user_img" src="${user.avatarUrl}" width="50" height="50" class="color-square">
                         </a>
                     </td>
 
                     <td><strong style="font-size:20px">Nick: ${guide.userNick}</strong></td>
-                    <td><small class="text-muted" style="font-size:17px"><em>${guide.data}</em></small></td>
+                    <td><small class="text-muted" style="font-size:17px"><em>${guide.date}</em></small></td>
                     <td><small class="text-muted" style="font-size:17px">Guide ${guide.id}</small></td>
                 </tr>
             </table>
@@ -54,7 +53,7 @@
                     <table>
                         <tr>
                             <td>
-                                <a href="/userInfo?id=${comment.user.id}">
+                                <a href="/users/${comment.user.id}">
                                     <img alt="user_img" src="${comment.user.avatarUrl}" width="50" height="50" class="color-square">
                                 </a>
                             </td>
@@ -69,8 +68,8 @@
                 <p class="lead">Comments Missmatch Exception!</p>
             </#if>
 
-            <#if userNow?has_content>
-                <form action="/guideInfo?id=${guide.id}" method="post" novalidate>
+            <#if user?has_content>
+                <form action="/guides/${guide.id}" method="post" novalidate>
                     <p class="lead">Insert comment:</p>
                     <p class="lead">
                         <label>

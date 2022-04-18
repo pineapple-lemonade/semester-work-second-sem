@@ -3,10 +3,7 @@ package ru.itis.ruzavin.infsecondsemsemesterwork.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.AddGuideDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.UserDto;
@@ -36,5 +33,11 @@ public class GuideController {
 	@GetMapping("/add")
 	public String getAddGuidePage() {
 		return "addGuide";
+	}
+
+	@GetMapping("/{id}")
+	public String getGuidePage(@PathVariable("id") Integer guideId, Model model) {
+		model.addAttribute("guide", guideService.getGuideById(guideId).get());
+		return "guideInfo";
 	}
 }

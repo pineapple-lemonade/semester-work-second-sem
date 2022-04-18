@@ -9,7 +9,7 @@
     <@title></@title>
     <style>
         body {
-            background: white url(img_1.png) repeat-x fixed;
+            background: white url(/img_1.png) repeat-x fixed;
             background-size: 100%;
         }
 
@@ -51,7 +51,7 @@
 <body>
 
 <nav class="navbar navbar-expand-sm navbar-custom">
-    <a class="navbar-brand"><img alt="got_img" src="img_2.png" width="50" height="50" class="rounded-circle"
+    <a class="navbar-brand"><img alt="got_img" src="/img_2.png" width="50" height="50" class="rounded-circle"
                                  style=""></a>
 
     <ul class="navbar-nav mr-auto">

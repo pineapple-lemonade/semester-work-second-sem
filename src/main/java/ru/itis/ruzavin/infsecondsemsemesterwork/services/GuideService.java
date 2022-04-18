@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface GuideService {
 	List<GuideDto> getAllGuides();
 	Optional<GuideDto> createGuide(MultipartFile pic, AddGuideDto addGuideDto, Integer userId);
+	List<GuideDto> getAllGuidesByTitle(String title);
+	Optional<GuideDto> getGuideById(Integer id);
 }
