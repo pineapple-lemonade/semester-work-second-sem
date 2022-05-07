@@ -25,8 +25,8 @@
                 for (let i = 0; i < response.length; i++) {
                     html += "<a href='/builds/" + response[i]['id'] + "'/>"
                     html += "<div class='alert alert-dark' role='alert'>"
-                    html += "<h2>" + response[i]['title'] +"</h2>"
-                    html += "<div>" + response[i]['text'] +"</div>"
+                    html += "<h2>" + response[i]['title'] + "</h2>"
+                    html += "<div>" + response[i]['text'] + "</div>"
                     html += "<br>"
                     html += "<img src=\"" + response[i]['photoUrl'] + "\" width='665' height='350'>"
                     html += "<br><br>"
@@ -44,28 +44,25 @@
             request.open('GET', '/handleBuilds/' + title, true);
             request.send();
 
-            if (request.status !== 200) {
-                alert(request.status + " error")
-            } else {
-                let html = ""
 
-                let response = JSON.parse(request.response)
+            let html = ""
 
-                for (let i = 0; i < response.length; i++) {
-                    html += "<a href='/guides/" + response[i]['id'] + "'/>"
-                    html += "<div class='alert alert-dark' role='alert'>"
-                    html += "<h2>" + response[i]['title'] +"</h2>"
-                    html += "<div>" + response[i]['text'] +"</div>"
-                    html += "<br>"
-                    html += "<img src=\"" + response[i]['photoUrl'] + "\" width='665' height='350'>"
-                    html += "<br><br>"
-                    html += "<div><small class='text-muted'>" + response[i]['userNick'] + " " + response[i]['date'] +
-                        "</small></div>"
-                    html += "<div><small class='text-muted'>Guide " + response[i]['id'] + "</small></div>"
-                    html += "</div>" + "</a>"
-                }
-                document.getElementById('result').innerHTML = html
+            let response = JSON.parse(request.response)
+
+            for (let i = 0; i < response.length; i++) {
+                html += "<a href='/guides/" + response[i]['id'] + "'/>"
+                html += "<div class='alert alert-dark' role='alert'>"
+                html += "<h2>" + response[i]['title'] + "</h2>"
+                html += "<div>" + response[i]['text'] + "</div>"
+                html += "<br>"
+                html += "<img src=\"" + response[i]['photoUrl'] + "\" width='665' height='350'>"
+                html += "<br><br>"
+                html += "<div><small class='text-muted'>" + response[i]['userNick'] + " " + response[i]['date'] +
+                    "</small></div>"
+                html += "<div><small class='text-muted'>Guide " + response[i]['id'] + "</small></div>"
+                html += "</div>" + "</a>"
             }
+            document.getElementById('result').innerHTML = html
         }
     </script>
 

@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDto> getUsersByNick(String nick) {
-		return UserDto.from(userRepository.findAllByNickContaining(nick));
+		return UserDto.from(userRepository.findAllByNickContains(nick));
 	}
 
 	@Override

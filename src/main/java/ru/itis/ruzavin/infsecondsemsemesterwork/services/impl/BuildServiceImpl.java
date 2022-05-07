@@ -63,7 +63,7 @@ public class BuildServiceImpl implements BuildService {
 
 	@Override
 	public List<BuildDto> getAllBuildsByTitle(String title) {
-		return BuildDto.from(buildRepository.findAllByTitle(title));
+		return BuildDto.from(buildRepository.findAllByTitleContains(title));
 	}
 
 	@Override

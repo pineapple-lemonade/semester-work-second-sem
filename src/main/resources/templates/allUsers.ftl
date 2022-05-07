@@ -15,25 +15,22 @@
             request.open('GET', '/handleUsers', false)
             request.send()
 
-            if (request.status !== 200) {
-                alert("error")
-            } else {
-                let html = ""
 
-                let response = JSON.parse(request.response)
+            let html = ""
 
-                for (let i = 0; i < response.length; i++) {
-                    html += "<a href='/users/" + response[i]['id'] + "'/>"
-                    html += "<div class='alert alert-dark' role='alert'>"
-                    html += "<table><tr>"
-                    html += "<td><img alt='user_img' src='" + response[i]['avatarUrl'] +
-                        "' width='50' height='50' class='rounded-circle'></td>"
-                    html += "<td><h3>"
-                    html += "<strong>" + response[i]['nick'] + "</strong>"
-                    html += "</h3></td></tr></table></div></a>"
-                }
-                document.getElementById('result').innerHTML = html
+            let response = JSON.parse(request.response)
+
+            for (let i = 0; i < response.length; i++) {
+                html += "<a href='/users/" + response[i]['id'] + "'/>"
+                html += "<div class='alert alert-dark' role='alert'>"
+                html += "<table><tr>"
+                html += "<td><img alt='user_img' src='" + response[i]['avatarUrl'] +
+                    "' width='50' height='50' class='rounded-circle'></td>"
+                html += "<td><h3>"
+                html += "<strong>" + response[i]['nick'] + "</strong>"
+                html += "</h3></td></tr></table></div></a>"
             }
+            document.getElementById('result').innerHTML = html
         }
 
         function showResult(nickname) {
@@ -41,26 +38,23 @@
             request.open('GET', '/handleUsers/' + nickname, false)
             request.send()
 
-            if (request.status !== 200) {
-                alert("error")
-            } else {
-                let html = ""
+            let html = ""
 
-                let response = JSON.parse(request.response)
+            let response = JSON.parse(request.response)
 
-                for (let i = 0; i < response.length; i++) {
-                    html += "<a href='/users/" + response[i]['id'] + "'/>"
-                    html += "<div class='alert alert-dark' role='alert'>"
-                    html += "<table><tr>"
-                    html += "<td><img alt='user_img' src='" + response[i]['avatarUrl'] +
-                        "' width='50' height='50' class='rounded-circle'/></td>"
-                    html += "<td><h3>"
-                    html += "<strong>" + response[i]['nick'] + "</strong>"
-                    html += "</h3></td></tr></table></div></a>"
-                }
-                document.getElementById('result').innerHTML = html
+            for (let i = 0; i < response.length; i++) {
+                html += "<a href='/users/" + response[i]['id'] + "'/>"
+                html += "<div class='alert alert-dark' role='alert'>"
+                html += "<table><tr>"
+                html += "<td><img alt='user_img' src='" + response[i]['avatarUrl'] +
+                    "' width='50' height='50' class='rounded-circle'/></td>"
+                html += "<td><h3>"
+                html += "<strong>" + response[i]['nick'] + "</strong>"
+                html += "</h3></td></tr></table></div></a>"
             }
+            document.getElementById('result').innerHTML = html
         }
+
     </script>
 
     <br>

@@ -65,7 +65,7 @@
             <a class="navbar-brand" href="/builds">Builds</a>
         </li>
         <li class="nav-item">
-            <a class="navbar-brand" href="/users">All users</a>
+            <a class="navbar-brand" href="/users">Users</a>
         </li>
         <li class="nav-item">
             <a class="navbar-brand" href="/guides/add">Add Guide</a>

@@ -8,7 +8,6 @@ import ru.itis.ruzavin.infsecondsemsemesterwork.dto.CommentDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.GuideDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.UserDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.exceptions.UserNotExistsException;
-import ru.itis.ruzavin.infsecondsemsemesterwork.models.Build;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.Guide;
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.User;
 import ru.itis.ruzavin.infsecondsemsemesterwork.repositories.GuideCommentRepository;
@@ -64,7 +63,7 @@ public class GuideServiceImpl implements GuideService {
 
 	@Override
 	public List<GuideDto> getAllGuidesByTitle(String title) {
-		return GuideDto.from(guideRepository.findAllByTitleLike(title));
+		return GuideDto.from(guideRepository.findAllByTitleContains(title));
 	}
 
 	@Override
