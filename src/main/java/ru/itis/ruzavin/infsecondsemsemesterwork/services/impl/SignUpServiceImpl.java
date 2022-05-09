@@ -37,7 +37,7 @@ public class SignUpServiceImpl implements SignUpService {
 
 	private final EmailUtil emailUtil;
 
-	@Value("project.base.url")
+	@Value("${project.base.url}")
 	private final String BASE_URL;
 
 	@Override
