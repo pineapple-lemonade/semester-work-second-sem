@@ -31,7 +31,8 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return !user.getState().equals(User.State.NOT_CONFIRMED);
+		//return !user.getState().equals(User.State.NOT_CONFIRMED);
+		return true;
 	}
 
 	@Override
