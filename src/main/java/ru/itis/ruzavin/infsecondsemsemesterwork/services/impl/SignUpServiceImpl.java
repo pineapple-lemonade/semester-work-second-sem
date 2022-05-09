@@ -2,6 +2,7 @@ package ru.itis.ruzavin.infsecondsemsemesterwork.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -36,6 +37,9 @@ public class SignUpServiceImpl implements SignUpService {
 
 	private final EmailUtil emailUtil;
 
+	@Value("project.base.url")
+	private final String BASE_URL;
+
 	@Override
 	public UserDto signUp(SignUpForm form) {
 		if (userRepository.findByEmail(form.getEmail()).isPresent() ||
@@ -57,7 +61,7 @@ public class SignUpServiceImpl implements SignUpService {
 
 		Map<String, String> data = new HashMap<>();
 		data.put("name", user.getNick());
-		data.put("link", "http://localhost/signUp/confirm/" + user.getConfirmCode());
+		data.put("link", "http://" + BASE_URL + "/signUp/confirm/" + user.getConfirmCode());
 		emailUtil.sendMail(user.getEmail(), "confirm", "confirm_email.ftlh", data);
 
 		return UserDto.from(savedUser);
