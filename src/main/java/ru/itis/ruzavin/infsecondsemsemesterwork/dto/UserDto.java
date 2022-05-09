@@ -21,6 +21,7 @@ public class UserDto implements Serializable {
 	private String email;
 	private String password;
 	private String avatarUrl;
+	private String confirmCode;
 
 	private User.Role role;
 
@@ -35,6 +36,7 @@ public class UserDto implements Serializable {
 				.nick(user.getNick())
 				.role(user.getRole())
 				.state(user.getState())
+				.confirmCode(user.getConfirmCode())
 				.build();
 	}
 

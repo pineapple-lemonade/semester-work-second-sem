@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.6.5'
     implementation 'org.springframework.boot:spring-boot-starter-freemarker:2.6.5'
     implementation 'org.springframework.session:spring-session-jdbc:2.6.3'
+    implementation 'org.springframework.boot:spring-boot-starter-mail:2.6.5'
 
     implementation 'com.cloudinary:cloudinary-http44:1.32.0'
     implementation 'com.cloudinary:cloudinary-taglib:1.32.0'

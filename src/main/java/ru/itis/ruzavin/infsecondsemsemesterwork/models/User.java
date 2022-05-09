@@ -34,6 +34,7 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	private String avatarUrl;
+	private String confirmCode;
 
 	@OneToMany(mappedBy = "user")
 	@ToString.Exclude

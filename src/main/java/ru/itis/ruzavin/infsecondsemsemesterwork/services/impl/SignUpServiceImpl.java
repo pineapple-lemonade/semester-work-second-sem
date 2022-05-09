@@ -15,8 +15,13 @@ import ru.itis.ruzavin.infsecondsemsemesterwork.exceptions.UserAlreadyExistsExce
 import ru.itis.ruzavin.infsecondsemsemesterwork.models.User;
 import ru.itis.ruzavin.infsecondsemsemesterwork.repositories.UserRepository;
 import ru.itis.ruzavin.infsecondsemsemesterwork.services.SignUpService;
+import ru.itis.ruzavin.infsecondsemsemesterwork.util.EmailUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -28,6 +33,8 @@ public class SignUpServiceImpl implements SignUpService {
 	private final UserRepository userRepository;
 
 	private final PasswordEncoder passwordEncoder;
+
+	private final EmailUtil emailUtil;
 
 	@Override
 	public UserDto signUp(SignUpForm form) {
@@ -43,8 +50,33 @@ public class SignUpServiceImpl implements SignUpService {
 				.password(passwordEncoder.encode(form.getPassword()))
 				.role(User.Role.USER)
 				.state(User.State.NOT_CONFIRMED)
+				.confirmCode(UUID.randomUUID().toString())
 				.build();
 
-		return UserDto.from(userRepository.save(user));
+		User savedUser = userRepository.save(user);
+
+		Map<String, String> data = new HashMap<>();
+		data.put("name", user.getNick());
+		data.put("link", "http://localhost/signUp/confirm/" + user.getConfirmCode());
+		emailUtil.sendMail(user.getEmail(), "confirm", "confirm_email.ftlh", data);
+
+		return UserDto.from(savedUser);
+	}
+
+	@Override
+	public Optional<User> confirmUserByCode(String confirmCode) {
+		Optional<User> user = userRepository.findByConfirmCodeLike(confirmCode);
+
+		if (user.isPresent()) {
+			if (user.get().getState().equals(User.State.NOT_CONFIRMED)) {
+				user.get().setState(User.State.CONFIRMED);
+				userRepository.save(user.get());
+				return user;
+			} else {
+				return Optional.empty();
+			}
+		} else {
+			return Optional.empty();
+		}
 	}
 }

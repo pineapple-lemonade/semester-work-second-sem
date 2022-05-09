@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/signIn")
 public class SignInController {
 
-	@GetMapping()
+	@GetMapping
 	public String getSignInPage(Authentication authentication, @RequestParam(value = "reason", required = false) String reason) {
 		if (authentication != null) {
 			return "redirect:/profile";
