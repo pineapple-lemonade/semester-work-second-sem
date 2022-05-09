@@ -40,29 +40,31 @@
         }
 
         function showResult(title) {
-            const request = new XMLHttpRequest();
-            request.open('GET', '/handleBuilds/' + title, true);
-            request.send();
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let html = ""
 
+                    let response = JSON.parse(xmlhttp.response)
 
-            let html = ""
-
-            let response = JSON.parse(request.response)
-
-            for (let i = 0; i < response.length; i++) {
-                html += "<a href='/guides/" + response[i]['id'] + "'/>"
-                html += "<div class='alert alert-dark' role='alert'>"
-                html += "<h2>" + response[i]['title'] + "</h2>"
-                html += "<div>" + response[i]['text'] + "</div>"
-                html += "<br>"
-                html += "<img src=\"" + response[i]['photoUrl'] + "\" width='665' height='350'>"
-                html += "<br><br>"
-                html += "<div><small class='text-muted'>" + response[i]['userNick'] + " " + response[i]['date'] +
-                    "</small></div>"
-                html += "<div><small class='text-muted'>Guide " + response[i]['id'] + "</small></div>"
-                html += "</div>" + "</a>"
+                    for (let i = 0; i < response.length; i++) {
+                        html += "<a href='/guides/" + response[i]['id'] + "'/>"
+                        html += "<div class='alert alert-dark' role='alert'>"
+                        html += "<h2>" + response[i]['title'] + "</h2>"
+                        html += "<div>" + response[i]['text'] + "</div>"
+                        html += "<br>"
+                        html += "<img src=\"" + response[i]['photoUrl'] + "\" width='665' height='350'>"
+                        html += "<br><br>"
+                        html += "<div><small class='text-muted'>" + response[i]['userNick'] + " " + response[i]['date'] +
+                            "</small></div>"
+                        html += "<div><small class='text-muted'>Guide " + response[i]['id'] + "</small></div>"
+                        html += "</div>" + "</a>"
+                    }
+                    document.getElementById('result').innerHTML = html
+                }
             }
-            document.getElementById('result').innerHTML = html
+            xmlhttp.open("GET", "/handleBuilds/" + title, true);
+            xmlhttp.send();
         }
     </script>
 

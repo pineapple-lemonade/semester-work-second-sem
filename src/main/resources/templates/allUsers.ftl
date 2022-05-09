@@ -34,25 +34,28 @@
         }
 
         function showResult(nickname) {
-            let request = new XMLHttpRequest()
-            request.open('GET', '/handleUsers/' + nickname, false)
-            request.send()
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let html = ""
 
-            let html = ""
+                    let response = JSON.parse(xmlhttp.response)
 
-            let response = JSON.parse(request.response)
-
-            for (let i = 0; i < response.length; i++) {
-                html += "<a href='/users/" + response[i]['id'] + "'/>"
-                html += "<div class='alert alert-dark' role='alert'>"
-                html += "<table><tr>"
-                html += "<td><img alt='user_img' src='" + response[i]['avatarUrl'] +
-                    "' width='50' height='50' class='rounded-circle'/></td>"
-                html += "<td><h3>"
-                html += "<strong>" + response[i]['nick'] + "</strong>"
-                html += "</h3></td></tr></table></div></a>"
+                    for (let i = 0; i < response.length; i++) {
+                        html += "<a href='/users/" + response[i]['id'] + "'/>"
+                        html += "<div class='alert alert-dark' role='alert'>"
+                        html += "<table><tr>"
+                        html += "<td><img alt='user_img' src='" + response[i]['avatarUrl'] +
+                            "' width='50' height='50' class='rounded-circle'/></td>"
+                        html += "<td><h3>"
+                        html += "<strong>" + response[i]['nick'] + "</strong>"
+                        html += "</h3></td></tr></table></div></a>"
+                    }
+                    document.getElementById('result').innerHTML = html
+                }
             }
-            document.getElementById('result').innerHTML = html
+            xmlhttp.open("GET", "/handleUsers/" + nickname, true);
+            xmlhttp.send();
         }
 
     </script>

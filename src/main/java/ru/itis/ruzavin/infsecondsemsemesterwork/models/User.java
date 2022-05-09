@@ -45,9 +45,11 @@ public class User implements Serializable {
 	private Set<Build> builds;
 
 	@OneToMany(mappedBy = "user")
+	@ToString.Exclude
 	private Set<BuildComment> buildComments;
 
 	@OneToMany(mappedBy = "user")
+	@ToString.Exclude
 	private Set<GuideComment> guideComments;
 
 	@Enumerated(EnumType.STRING)
