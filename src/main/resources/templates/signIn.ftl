@@ -18,6 +18,16 @@
 </style>
 
 <#macro content>
+
+    <script
+            type="text/javascript"
+            src="https://vk.com/js/api/openapi.js?168"
+            charset="windows-1251"
+    ></script>
+    <script type="text/javascript">
+        VK.init({ apiId: 8163092 });
+    </script>
+
     <br>
     <h1>Sign In</h1>
     <br>
@@ -35,6 +45,11 @@
                 Remember me:
                 <input name="rememberMe" type="checkbox">
             </p>
+            <br>
+            <div id="vk_auth"></div>
+            <script type="text/javascript" style="height: 200px">
+                VK.Widgets.Auth("vk_auth", {authUrl: "/signIn/vk"});
+            </script>
             <br>
             <p class="lead"><input type="submit" value="Enter"></p>
             <br>

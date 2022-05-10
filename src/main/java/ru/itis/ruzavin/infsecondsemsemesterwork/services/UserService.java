@@ -16,5 +16,8 @@ public interface UserService {
 
 	List<UserDto> getUsersByNick(String nick);
 
+	Optional<UserDto> saveUser(User user);
+	Optional<UserDto> getUserByConfirmCode(String code);
+
 	Optional<UserDto> getUserById(Integer id);
 }

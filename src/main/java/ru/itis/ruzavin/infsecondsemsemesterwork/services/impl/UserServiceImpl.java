@@ -89,6 +89,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public Optional<UserDto> saveUser(User user) {
+		return Optional.of(UserDto.from(userRepository.save(user)));
+	}
+
+	@Override
+	public Optional<UserDto> getUserByConfirmCode(String code) {
+		User user = userRepository.findByConfirmCodeLike(code).orElse(null);
+		if (user == null) {
+			return Optional.empty();
+		}
+		return Optional.of(UserDto.from(user));
+	}
+
+	@Override
 	public Optional<UserDto> getUserById(Integer id) {
 		return Optional.of(UserDto.from(userRepository.getById(id)));
 	}
