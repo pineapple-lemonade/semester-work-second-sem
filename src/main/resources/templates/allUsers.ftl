@@ -12,7 +12,7 @@
     <script>
         window.onload = function showAll() {
             let request = new XMLHttpRequest()
-            request.open('GET', '/handleUsers', false)
+            request.open('GET', '/api/users', false)
             request.send()
 
 
@@ -54,7 +54,7 @@
                     document.getElementById('result').innerHTML = html
                 }
             }
-            xmlhttp.open("GET", "/handleUsers/" + nickname, true);
+            xmlhttp.open("GET", "/api/users/" + nickname, true);
             xmlhttp.send();
         }
 

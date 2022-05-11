@@ -3,6 +3,7 @@ package ru.itis.ruzavin.infsecondsemsemesterwork.services.impl;
 import com.cloudinary.utils.ObjectUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itis.ruzavin.infsecondsemsemesterwork.dto.UserDto;
 import ru.itis.ruzavin.infsecondsemsemesterwork.exceptions.UserNotExistsException;
@@ -100,6 +101,12 @@ public class UserServiceImpl implements UserService {
 			return Optional.empty();
 		}
 		return Optional.of(UserDto.from(user));
+	}
+
+	@Transactional
+	@Override
+	public void deleteUserById(Integer id) {
+		userRepository.deleteById(id);
 	}
 
 	@Override
