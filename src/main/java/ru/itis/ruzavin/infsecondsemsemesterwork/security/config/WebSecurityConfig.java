@@ -33,8 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private SavedRequestAwareAuthenticationSuccessHandler awareAuthenticationSuccessHandler;
 
-	@Autowired
-	private OncePerRequestFilter rememberMeFilter;
+//	@Autowired
+//	private OncePerRequestFilter rememberMeFilter;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 
-		http.addFilterAfter(rememberMeFilter, BasicAuthenticationFilter.class);
+		//http.addFilterAfter(rememberMeFilter, BasicAuthenticationFilter.class);
 
 		http
 				.rememberMe()
