@@ -30,6 +30,9 @@ public class ImageHelper {
 		File file;
 		String url;
 		try {
+			if (pic.isEmpty()) {
+				return "";
+			}
 			file = makeFile(pic);
 			Map upload = CloudinaryHelper.getCloudinary().uploader()
 					.upload(file, ObjectUtils.asMap("public_id", file.getName()));
